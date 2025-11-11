@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LW_Manager Label="Process">
+    <menu Label="Epoch segmentation">
+        <submenu Label="Segment relative to events" callback="FLW_segmentation"/>
+        <submenu Label="Segment relative to events (one file per event code)" callback="FLW_segmentation_separate"/>
+        <submenu Label="Segment epochs in successive chunks" callback="FLW_segmentation_chunk" />
+    </menu>
+    <menu Label="Rereference signals">
+        <submenu Label="Rereference" callback="FLW_rereference"/>
+        <submenu Label="Rereference (custom montage)" callback="FLW_rereference_advanced"/>
+    </menu>
+    <menu Label="Baseline operations">
+        <submenu Label="Baseline correction" callback="FLW_baseline"/>
+        <submenu Label="Frequency Spectrum baseline correction" callback="FLW_baseline_SNR"/>
+    </menu>
+    <menu Label="Spatial filters (ICA/PCA)">
+        <submenu Label="------Compute spatial filter------"/>
+        <submenu Label="Compute ICA matrix" callback="FLW_compute_ICA"/>
+        <submenu Label="Compute ICA matrix (merged)" callback="FLW_compute_ICA_merged"/>
+        <submenu Label="Compute PCA matrix" callback="FLW_compute_PCA"/>
+        <submenu Label="Compute PCA matrix (merged)" callback="FLW_compute_PCA_merged"/>
+        <submenu Label="------Compute spatial filter------"/>
+        <submenu Label="Apply ICA/PCA spatial filter" callback="FLW_spatial_filter_apply"/>
+        <submenu Label="Assign ICA/PCA matrix"  callback="FLW_spatial_filter_assign"/>
+        <submenu Label="ICA/PCA unmix signal (sensors->ICs/PCs)"  callback="FLW_spatial_filter_unmix"/>
+        <submenu Label="ICA/PCA remix signal (ICs/PCs->sensors)"  callback="FLW_spatial_filter_remix"/>
+    </menu>
+    <menu Label="Artefact rejection and suppression">
+        <submenu Label="Suppress ocular artefacts (Graton and Coles)" callback="FLW_ocular_remove"/>
+        <submenu Label="Reject epochs (amplitude criterion)" callback="FLW_reject_epochs_amplitude"/>
+        <submenu Label="Reject epochs (visual inspection)"/>
+    </menu>
+    <menu Label="Frequency analysis and filters">
+        <submenu Label="------Frequency analysis------"/>
+        <submenu Label="FFT (Fast Fourier Transform)" callback="FLW_FFT"/>
+        <submenu Label="iFFT (Inverse FFT)" callback="FLW_iFFT"/>
+        <submenu Label="Welch Method (Fast Fourier Transform)" callback="FLW_welch"/>
+        <submenu Label="------Time-Frequency analysis------"/>
+        <submenu Label="STFT (Short-Time Fourier Transform)" callback="FLW_STFT"/>
+        <submenu Label="CWT (Continue Wavelet Transform)" callback="FLW_CWT"/>
+        <submenu Label="------Frequency filters------"/>
+        <submenu Label="DC removal and linear detrend" callback="FLW_dc_removal"/>
+        <submenu Label="Butterworth filters" callback="FLW_butterworth_filter"/>
+        <submenu Label="FFT filters" callback="FLW_FFT_filter"/>
+        <submenu Label="FFT multinotch filter" callback="FLW_FFT_filter"/>
+        <submenu Label="------Others------"/>
+        <submenu Label="Hilbert transform " callback="FLW_hilbert"/>
+    </menu>
+    <menu Label="Average">
+        <submenu Label="Compute average, std, median across epochs" callback="FLW_average_epochs"/>
+        <submenu Label="Sliding operation along dimension"/>
+        <submenu Label="Sliding average across trials (ERPimage)"/>
+        <submenu Label="Grand average (weighted)"/>
+        <submenu Label="Linear channel map"/>
+        <submenu Label="Weighted channel average (create template)"/>
+        <submenu Label="Weighted channel average (apply template)"/>
+    </menu>
+    <menu Label="Math">
+        <submenu Label="Math operations using a constant" callback="FLW_math_constant"/>
+        <submenu Label="Math operations using two datasets" callback="FLW_math"/>
+        <submenu Label="Global field power" callback="FLW_gfp"/>
+        <submenu Label="Threshold signals" callback="FLW_threshold"/>
+        <submenu Label="Compute signal derivative" callback="FLW_derivate_signals"/>
+    </menu>
+</LW_Manager>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LW_Manager Label="Edit">
+    <menu Label="Electrodes">
+        <submenu Label="Edit electrode coordinates" callback="FLW_electrode_location_assign"/>
+        <submenu Label="Edit electrode labels" callback="FLW_electrode_labels"/>
+        <submenu Label="Interpolate channel using neighbouring electrodes" callback="FLW_interpolate_channel"/>
+        <submenu Label="New channel: averaged by existing channels" callback="FLW_new_channel_averaged"/>
+    </menu>
+    <menu Label="Events">
+        <submenu Label="Browse and edit events" callback="GLW_multi_viewer_continuous"/>
+        <submenu Label="Create events from level trigger"/>
+        <submenu Label="Merge event codes and latencies"/>
+        <submenu Label="Sort epochs according to event latencies"/>
+    </menu>
+    <menu Label="Arrange signals">
+        <submenu Label="Rearrange or delete epochs, channels, indexes" callback="FLW_selection"/>
+        <submenu Label="Merge dataset epochs, channels, indexes" callback="FLW_merge"/>
+        <submenu Label="Concatenate epochs" callback="FLW_concatenate_epochs"/>
+        <submenu Label="Equalize number of epochs across datasets" callback="FLW_equalize_epochs"/>
+    </menu>
+    <menu Label="Resample Signals">
+        <submenu Label="Crop signals" callback="FLW_crop_epochs"/>
+        <submenu Label="Downsample signals (integer ratio)" callback="FLW_downsample"/>
+        <submenu Label="Resample signals (user defined sampling rate)" callback="FLW_resample"/>
+    </menu>
+    <menu Label="Dataset properties"/>
+</LW_Manager>

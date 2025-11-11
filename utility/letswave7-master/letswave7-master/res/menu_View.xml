@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LW_Manager Label="View">
+    <menu Label="Multiviewer Waveform" callback="GLW_multi_viewer_wave"/>
+    <menu Label="Multiviewer Time-Frequency map" callback="GLW_multi_viewer_map"/>
+    <menu Label="Continuous Data Viewer" callback="GLW_multi_viewer_continuous"/>
+</LW_Manager>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LW_Manager Label="Statistics">
+    <menu Label="Compare dataset against a constant (one-sample t-test)" callback="FLW_ttest_constant"/>
+    <menu Label="Compare two datasets (paired sample/two sample t-test）" callback="FLW_ttest"/>
+    <menu Label="Compare more than two datasets (ANOVA)" callback="FLW_ANOVA"/>
+    <menu Label="One way ANOVA with permutation test" callback="FLW_ANOVA_permutation"/>
+</LW_Manager>
