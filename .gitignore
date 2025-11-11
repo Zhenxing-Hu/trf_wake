@@ -1,0 +1,8 @@
+#Ignore .mat file
+*.mat
+
+#Igonre .lw6 file
+*.lw6
+
+#Igonre .eeg file
+*.lw6
