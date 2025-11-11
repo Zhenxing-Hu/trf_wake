@@ -5,4 +5,13 @@
 *.lw6
 
 #Igonre .eeg file
-*.lw6
+*.eeg
+
+#Igonre .vhdr file
+*.vhdr
+
+#Igonre .vmrk file
+*.vmrk
+
+#Igonre .wav file
+*.wav
