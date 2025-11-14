@@ -28,7 +28,7 @@ x_duration = 4.20;    % redundant with end-start, but matches your past settings
 for s = 1:numel(ls)
     subj = ls(s).name;
     sub_fold = [outRoot,'/',ls(s).name];
-    inFile = fullfile(rawRoot, sprintf('ds butt reref %s.lw6', subj));
+    inFile = fullfile(rawRoot, sprintf('ds butt %s.lw6', subj));
     if ~exist(inFile,'file')
         warning('Missing input: %s', inFile);  %#ok<*WNTAG>
         continue;

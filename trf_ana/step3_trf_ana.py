@@ -96,26 +96,27 @@ def trf_trialwise():
         # ---- CV over lambda per channel (time-wise) ----
         best_alpha = np.empty(nChSel, dtype=float)
         
-        for ch in range(nChSel):
-            r_mean_per_lambda = []
-            for L in lambda_grid:
-                r_folds = []
-                for test_idx in folds:
-                    train_idx = np.setdiff1d(np.arange(Tkeep), test_idx, assume_unique=True)
+        # No cross-validation being performed
+        # for ch in range(nChSel):
+        #     r_mean_per_lambda = []
+        #     for L in lambda_grid:
+        #         r_folds = []
+        #         for test_idx in folds:
+        #             train_idx = np.setdiff1d(np.arange(Tkeep), test_idx, assume_unique=True)
 
-                    Xtr = _as_3d_trial(stim_z[train_idx])        # [1 x Tr x 1]
-                    Ytr = _as_3d_trial(resp_z[train_idx, [ch]])  # [1 x Tr x 1]
-                    Xte = _as_3d_trial(stim_z[test_idx])         # [1 x Te x 1]
-                    Yte = _as_3d_trial(resp_z[test_idx, [ch]])   # [1 x Te x 1]
+        #             Xtr = _as_3d_trial(stim_z[train_idx])        # [1 x Tr x 1]
+        #             Ytr = _as_3d_trial(resp_z[train_idx, [ch]])  # [1 x Tr x 1]
+        #             Xte = _as_3d_trial(stim_z[test_idx])         # [1 x Te x 1]
+        #             Yte = _as_3d_trial(resp_z[test_idx, [ch]])   # [1 x Te x 1]
 
-                    trf_ch = TRF(direction=Dir, kind='single', method='ridge')
-                    trf_ch.train(_squeeze_if_single_trial(Xtr), _squeeze_if_single_trial(Ytr), fsEEG, tmin_s, tmax_s, float(L))
-                    _, r = trf_ch.predict(_squeeze_if_single_trial(Xte), _squeeze_if_single_trial(Yte))
-                    r_folds.append(float(np.asarray(r).squeeze()))
+        #             trf_ch = TRF(direction=Dir, kind='single', method='ridge')
+        #             trf_ch.train(_squeeze_if_single_trial(Xtr), _squeeze_if_single_trial(Ytr), fsEEG, tmin_s, tmax_s, float(L))
+        #             _, r = trf_ch.predict(_squeeze_if_single_trial(Xte), _squeeze_if_single_trial(Yte))
+        #             r_folds.append(float(np.asarray(r).squeeze()))
 
-                r_mean_per_lambda.append(np.mean(r_folds))
+        #         r_mean_per_lambda.append(np.mean(r_folds))
 
-            best_alpha[ch] = float(lambda_grid[int(np.argmax(r_mean_per_lambda))])
+        #     best_alpha[ch] = float(lambda_grid[int(np.argmax(r_mean_per_lambda))])
         
         best_alpha = alpha*np.ones(nChSel, dtype=float)
         print(f'ep {ep+1:03d}: OK ({pretty}, ID {sid})')
@@ -286,8 +287,8 @@ if __name__ == '__main__':
     for f in sorted(ls[0:]):
         filename      = os.path.basename(f)
         print(filename)
-        ep_mat        = os.path.join('..','data','preprocessed', f'ep ds butt reref {filename[:-4]}.mat')
-        ep_lw6        = os.path.join('..','data','preprocessed', f'ep ds butt reref {filename[:-4]}.lw6')
+        ep_mat        = os.path.join('..','data','preprocessed', f'ep ds butt {filename[:-4]}.mat')
+        ep_lw6        = os.path.join('..','data','preprocessed', f'ep ds butt {filename[:-4]}.lw6')
         raw_mat       = os.path.join('..','data','preprocessed', f'{filename[:-4]}.mat')
         raw_lw6       = os.path.join('..','data','preprocessed', f'{filename[:-4]}.lw6')
         stim_xlsx     = os.path.join('..','stimuli','Stimuli_Triggers.xlsx')
@@ -326,5 +327,5 @@ if __name__ == '__main__':
         genre_set_short = set(short_code(c) for c in genre_codes)
         rawGenreIdx = [i for i, e in enumerate(events) if short_code(e['code']) in genre_set_short]
         id2name = read_stim_mapping(stim_xlsx)
-        # trf_trialwise()
-        trf_per_genre()
+        trf_trialwise()
+        # trf_per_genre()

@@ -5,7 +5,7 @@
 % Genres: Blues, Metal, Pop
 
 clc; close all;
-
+addpath(genpath("../utility/letswave7-master"));
 out_trf_root = fullfile('..','out_trf');
 genres       = {'Blues','Metal','Pop'};
 fig_root     = fullfile('..','figures'); if ~exist(fig_root,'dir'), mkdir(fig_root); end
@@ -20,14 +20,13 @@ subj_dirs = subj_dirs([subj_dirs.isdir]);
 % style
 colMean = [0.00 0.45 0.74];
 colFill = [0.70 0.82 0.94];
-
+chLab = ["F3","F4","C3","C4","P3","P4","O1","O2"];
 for g = 1:numel(genres)
     G = genres{g};
 
     % ---- gather ERPs for this genre ----
     X_all = [];                 % [nSub x nCh x nT]
     t_ms  = [];
-    chLab = strings(0);
     
     for s = 1:numel(subj_dirs)
         subj_id = subj_dirs(s).name;                          % 'DLS## _E'
@@ -38,7 +37,6 @@ for g = 1:numel(genres)
         if isempty(t_ms)
             nT   = size(Y,2);
             t_ms = (H.xstart + (0:nT-1).*H.xstep) * 1000;     % ms
-            chLab = get_chan_labels(H, size(Y,1));
         end
         X_all(end+1,:,:) = Y; 
     end
@@ -73,7 +71,7 @@ for g = 1:numel(genres)
         patch_ci(ax, t_ms, mu, ci, colFill);
         plot(ax, t_ms, mu, 'Color', colMean, 'LineWidth', 1.8);
 
-        title(ax, chLab{ch}, 'FontWeight','bold');
+        title(ax, chLab(ch), 'FontWeight','bold');
         xlabel(ax,'Time (ms)'); ylabel(ax,'Amplitude');
         set(ax,'TickDir','out'); box(ax,'off');
         xlim(ax,[t_ms(1) t_ms(end)]);
@@ -112,15 +110,7 @@ catch
 end
 end
 
-function lab = get_chan_labels(H, nCh)
-    lab = repmat("Ch",1,nCh);
-    try
-        if isfield(H,'chanlocs') && ~isempty(H.chanlocs)
-            tmp = string(arrayfun(@(c)c.labels, H.chanlocs, 'UniformOutput', false));
-            if numel(tmp)==nCh, lab = tmp; end
-        end
-    end
-end
+
 
 function [mu, ci] = mean_ci(X)
     % X: [nSub × nT]
